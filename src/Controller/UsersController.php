@@ -15,7 +15,7 @@ class UsersController extends AppController
     public function initialize()
     {
         parent::initialize();
-        // Add the 'add' action to the allowed actions list.
+        // permitir apenas estas ações com  o user sem login
         $this->Auth->allow(['logout', 'add']);
     }
     //Login
@@ -27,7 +27,7 @@ class UsersController extends AppController
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error('Your username or password is incorrect.');
+            $this->Flash->error('Login ou senha incorreta.');
         }
     }
 
