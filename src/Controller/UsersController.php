@@ -20,7 +20,9 @@ class UsersController extends AppController
     }
     //Login
     public function login()
-    {
+    {   
+        //definir um novo layout
+        $this->viewBuilder()->setLayout('admin');     
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
@@ -29,6 +31,7 @@ class UsersController extends AppController
             }
             $this->Flash->error('Login ou senha incorreta.');
         }
+        $this->set('title','Login');
     }
 
     /**
