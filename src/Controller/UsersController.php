@@ -37,7 +37,7 @@ class UsersController extends AppController
 
     public function logout()
     {
-        $this->Flash->success('You are now logged out.');
+        $this->Flash->success('You are now logged out. HOE');
         return $this->redirect($this->Auth->logout());
     }
     /**
@@ -75,6 +75,9 @@ class UsersController extends AppController
      */
     public function add()
     {
+        //definir um novo layout
+        $this->viewBuilder()->setLayout('login');   
+        
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -136,7 +139,7 @@ class UsersController extends AppController
     {
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['add', 'tags'])) {
+        if (in_array($action, ['add', 'edit'])) {
             return true;
         }
 

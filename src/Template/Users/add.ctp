@@ -4,24 +4,25 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Add User') ?></legend>
-        <?php
-            echo $this->Form->control('creted_at');
-            echo $this->Form->control('updated_at');
-            echo $this->Form->control('login');
-            echo $this->Form->control('password');
-            echo $this->Form->control('active');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+<div class="container">
+    <div class="row mt-5" style="margin: 0;">
+        <div class="col-sm-10 col-md-6 col-lg-5 mx-auto my-5">
+            <div class="card" id="loginPageCard">
+                <div class="card-body">
+                    <h4>Cadastro</h4>
+                    <?= $this->Form->create() ?>
+                        <?= $this->Form->control('login',[ 'label' => 'Usuário','class'=>'form-control', 'required' => 'required', 'placeholder' => 'Ex: hood2018'])?>
+                        <div class="invalid-feedback text-center">Por favor insira o nome do usuário</div>
+                        <?= $this->Form->control('password', ['label'=> 'Senha', 'class'=>'form-control', 'required' => 'required']) ?>
+                        <div class="row mt-2">
+                            <div class="col-12 my-2 text-right">
+                                <?= $this->Form->button('Cadastrar', ['class' => 'btn btn-outline-primary btn-block']) ?>
+                            </div>
+                            <div class="col-12 my-2">
+                                <a class="btn btn-outline-danger btn-block" href="<?= $this->url->build('/'); ?>">Voltar<!--  para a Home --></a>
+                            </div>
+                        </div>
+                    <?= $this->Form->end() ?>
+                </div>
+            </div>
+        </div>
