@@ -4,41 +4,36 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="users view large-9 medium-8 columns content">
-    <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Login') ?></th>
-            <td><?= h($user->login) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Creted At') ?></th>
-            <td><?= h($user->creted_at) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Updated At') ?></th>
-            <td><?= h($user->updated_at) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Active') ?></th>
-            <td><?= $user->active ? __('Yes') : __('No'); ?></td>
-        </tr>
-    </table>
+<!-- Conteúdo da página -->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Usuários</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-secondary" href="<?=$this->Url->build('/users/edit/'.$user->id)?>"><i class="fas fa-edit"></i> Editar</a>
+    </div>
 </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="h5"><i class="fas fa-address-card mr-2"></i>Informações do usuário</h5>
+            </div>
+            <div class="card-body p-5">
+                <ul class="list-unstyled">
+                    <li class="h4">Login: <?= h($user->login) ?></li>
+                    <li>Conta cadastrada em <?= h($user->creted_at->format('d/m/Y H:i')) ?>
+                    <?= !empty($user->updated_at)? 'e atualizada em '. h($user->updated_at->format('d/m/Y H:i')) : '.' ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /row -->
+
+
+</main>
+<!-- FIM Conteúdo da página -->
