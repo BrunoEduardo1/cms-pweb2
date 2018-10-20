@@ -4,52 +4,52 @@
  * @var \App\Model\Entity\Question[]|\Cake\Collection\CollectionInterface $questions
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Question'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="questions index large-9 medium-8 columns content">
-    <h3><?= __('Questions') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<!-- Conteúdo da página -->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Perguntas Frequentes</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-secondary" href="<?=$this->Url->build('/questions/add')?>"><i class="fas fa-plus-circle"></i> Adicionar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Col banners table -->
+    <div class="col-12 mx-auto mb-5 mt-5">
+     <div class="table-responsive">
+      <table class="table table-striped table-sm">
         <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('creted_at') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('updated_at') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('question') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('answer') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('active') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
+          <tr>
+            <th>Adicionado em</th>
+            <th>Pergunta</th>
+            <th>Resposta</th>
+            <th>Edit</th>
+          </tr>
         </thead>
         <tbody>
             <?php foreach ($questions as $question): ?>
             <tr>
-                <td><?= $this->Number->format($question->id) ?></td>
-                <td><?= h($question->creted_at) ?></td>
-                <td><?= h($question->updated_at) ?></td>
+                <td><?= h($question->creted_at->format('d/m/Y H:i:s')) ?></td>
                 <td><?= h($question->question) ?></td>
                 <td><?= h($question->answer) ?></td>
-                <td><?= h($question->active) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $question->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $question->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $question->id], ['confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?>
+                    <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-eye']), ['action' => 'view', $question->id], ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Ver', 'escape' => false]) ?>
+
+                    <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-edit']), ['action' => 'edit', $question->id], ['class' => 'btn btn-primary btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Editar', 'escape' => false]) ?>
+
+                    <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['action' => 'delete', $question->id],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Excluir', 'escape' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+      </table>
     </div>
+    <!-- /Col banners table -->
+  </div>
+  <!-- /row -->
 </div>
+
+</main>
+<!-- FIM Conteúdo da página -->

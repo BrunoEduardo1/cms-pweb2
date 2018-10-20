@@ -32,25 +32,26 @@ $titulocms = 'Fucking CMS';
             <input class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
             <ul class="navbar-nav px-3">
               <li class="nav-item text-nowrap">
-                <a class="nav-link" href="../acesso/login.php">Sair</a>
+                <a class="nav-link" href="<?=$this->Url->build('/users/logout')?>">Sair</a>
             </li>
             </ul>
-        </nav>
-         <div class="container">
-            <div class="row">
-                <!-- side bar -->
-                <?= $this->element('sidebar')?>
-                <!-- side bar -->
-                <?= $this->fetch('content') ?>
-            </div>
-        </div>
-
+        </nav>    
+        <!-- side bar -->
+        <?= $this->element('sidebar')?>
+        <!-- [fim] side bar -->
+        <?= $this->fetch('content') ?>
     </div>
 <footer>
 </footer>
+<?= $this->Html->script('feather.min.js') ?>
 <?= $this->Html->script('jquery.min.js') ?>
 <?= $this->Html->script('bootstrap.min.js') ?>
 <?= $this->Html->script('popper.min.js') ?>
+<?= $this->Html->script('dropify.js') ?>
+<!-- <?= $this->Html->script('basics.js') ?> -->
+  <script>
+    feather.replace()
+  </script>
 </body>
 </html>
 
