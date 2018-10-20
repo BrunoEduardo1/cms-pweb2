@@ -16,7 +16,7 @@
   </div>
 
   <div class="row">
-    <!-- Col banners table -->
+    <!-- Col table -->
     <div class="col-12 mx-auto mb-5 mt-5">
      <div class="table-responsive">
       <table class="table table-striped">
@@ -56,7 +56,7 @@
         <p><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
     </div>
-    <!-- /Col banners table -->
+    <!-- /Col table -->
   </div>
   <!-- /row -->
 </div>

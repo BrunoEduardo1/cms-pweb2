@@ -13,6 +13,12 @@ use App\Controller\AppController;
 class MessagesController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->viewBuilder()->setLayout('admin');
+    }
+
     /**
      * Index method
      *
@@ -52,7 +58,7 @@ class MessagesController extends AppController
         if ($this->request->is('post')) {
             $message = $this->Messages->patchEntity($message, $this->request->getData());
             if ($this->Messages->save($message)) {
-                $this->Flash->success(__('The message has been saved.'));
+                $this->Flash->success(__('Nova mensagem salva.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -97,9 +103,9 @@ class MessagesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $message = $this->Messages->get($id);
         if ($this->Messages->delete($message)) {
-            $this->Flash->success(__('The message has been deleted.'));
+            $this->Flash->success(__('Mensagem deletada.'));
         } else {
-            $this->Flash->error(__('The message could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O mensagem no pode ser deletada. Tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

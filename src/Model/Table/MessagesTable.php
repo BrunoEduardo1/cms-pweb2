@@ -47,15 +47,15 @@ class MessagesTable extends Table
         $validator
             ->nonNegativeInteger('id')
             ->allowEmpty('id', 'create');
-
+        /*
         $validator
             ->dateTime('creted_at')
             ->requirePresence('creted_at', 'create')
-            ->notEmpty('creted_at');
-
+            ->notEmpty('creted_at');*/
+        /*
         $validator
             ->dateTime('updated_at')
-            ->allowEmpty('updated_at');
+            ->allowEmpty('updated_at');*/
 
         $validator
             ->scalar('sender_name')
@@ -78,11 +78,11 @@ class MessagesTable extends Table
             ->scalar('content')
             ->requirePresence('content', 'create')
             ->notEmpty('content');
-
+        /*
         $validator
             ->boolean('active')
             ->requirePresence('active', 'create')
-            ->notEmpty('active');
+            ->notEmpty('active'); */
 
         return $validator;
     }
