@@ -15,6 +15,7 @@ class UsersController extends AppController
     public function initialize()
     {
         parent::initialize();
+        $this->viewBuilder()->setLayout('admin');
         // permitir apenas estas ações com  o user sem login
         $this->Auth->allow(['logout', 'add']);
     }

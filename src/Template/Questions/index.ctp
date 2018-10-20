@@ -19,7 +19,7 @@
     <!-- Col banners table -->
     <div class="col-12 mx-auto mb-5 mt-5">
      <div class="table-responsive">
-      <table class="table table-striped table-sm">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Adicionado em</th>
