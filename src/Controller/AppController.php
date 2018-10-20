@@ -67,7 +67,7 @@ class AppController extends Controller
                 'action' => 'login'
             ],
              //use isAuthorized in Controllers
-            'authorize' => ['Controller'],
+            //'authorize' => ['Controller'], definir restrições
              // If unauthorized, return them to page they were just on
             'unauthorizedRedirect' => $this->referer()
         ]);

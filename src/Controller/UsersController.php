@@ -22,11 +22,12 @@ class UsersController extends AppController
     public function login()
     {   
         //definir um novo layout
-        $this->viewBuilder()->setLayout('admin');     
+        $this->viewBuilder()->setLayout('login');     
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
+                //return $this->redirect(['action' => 'index']);
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error('Login ou senha incorreta.');
@@ -34,6 +35,11 @@ class UsersController extends AppController
         $this->set('title','Login');
     }
 
+    public function logout()
+    {
+        $this->Flash->success('You are now logged out.');
+        return $this->redirect($this->Auth->logout());
+    }
     /**
      * Index method
      *
@@ -124,5 +130,25 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    //Definir restrições ao user logado
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+        // The add and tags actions are always allowed to logged in users.
+        if (in_array($action, ['add', 'tags'])) {
+            return true;
+        }
+
+        // All other actions require a slug.
+        $slug = $this->request->getParam('pass.0');
+        if (!$slug) {
+            return false;
+        }
+
+        // Check that the article belongs to the current user.
+        $article = $this->Articles->findBySlug($slug)->first();
+
+        return $article->user_id === $user['id'];
     }
 }

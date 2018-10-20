@@ -13,6 +13,7 @@ $titulocms = 'Fucking CMS';
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('bootstrap.min.css') ?>
+     <?= $this->Html->css('style.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -20,7 +21,7 @@ $titulocms = 'Fucking CMS';
 </head>
 <body>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
+    <div class="container-fluid">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
