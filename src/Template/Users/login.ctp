@@ -16,7 +16,7 @@
 								<a href="<?= $this->url->build('/users/add'); ?>" style="font-size: 12px; color: #343434">Cadastrar</a>
 							</div>
 							<div class="col-6 my-2">
-								<a class="btn btn-outline-danger" href="<?= $this->url->build('/pages/inicial'); ?>">Voltar<!--  para a Home --></a>
+								<a class="btn btn-outline-danger" href="<?= $this->url->build('/'); ?>">Voltar<!--  para a Home --></a>
 							</div>
 							<div class="col-6 my-2 text-right">
 								<?= $this->Form->button('Entrar', ['class' => 'btn btn-outline-primary']) ?>
