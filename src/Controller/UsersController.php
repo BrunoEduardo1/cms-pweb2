@@ -17,7 +17,7 @@ class UsersController extends AppController
         parent::initialize();
         $this->viewBuilder()->setLayout('admin');
         // permitir apenas estas ações com  o user sem login
-        $this->Auth->allow(['logout', 'add']);
+        $this->Auth->allow(['logout', 'cadastro']);
     }
     //Login
     public function login()
@@ -76,9 +76,6 @@ class UsersController extends AppController
      */
     public function add()
     {
-        //definir um novo layout
-        $this->viewBuilder()->setLayout('login');   
-        
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -134,6 +131,24 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    //Cadastro de usuário
+    public function cadastro()
+    {
+        //definir um novo layout
+        $this->viewBuilder()->setLayout('login');   
+        
+        $user = $this->Users->newEntity();
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Cadastrado com sucesso!'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('Não foi possível salvar o usuário. Tente novamente.'));
+        }
+        $this->set(compact('user'));
     }
     //Definir restrições ao user logado
     public function isAuthorized($user)

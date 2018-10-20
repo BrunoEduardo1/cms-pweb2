@@ -13,7 +13,7 @@
 								<a href="<?= $this->url->build('/'); ?>" style="font-size: 12px; color: #343434">Esqueceu a senha?</a>
 							</div>
 							<div class="col-12">
-								<a href="<?= $this->url->build('/users/add'); ?>" style="font-size: 12px; color: #343434">Cadastrar</a>
+								<a href="<?= $this->url->build('/users/cadastro'); ?>" style="font-size: 12px; color: #343434">Cadastrar</a>
 							</div>
 							<div class="col-6 my-2">
 								<a class="btn btn-outline-danger" href="<?= $this->url->build('/'); ?>">Voltar<!--  para a Home --></a>

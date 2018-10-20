@@ -4,25 +4,32 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<div class="container">
-    <div class="row mt-5" style="margin: 0;">
-        <div class="col-sm-10 col-md-6 col-lg-5 mx-auto my-5">
-            <div class="card" id="loginPageCard">
-                <div class="card-body">
-                    <h4>Cadastro</h4>
-                    <?= $this->Form->create() ?>
-                        <?= $this->Form->control('login',[ 'label' => 'Usuário','class'=>'form-control', 'required' => 'required', 'placeholder' => 'Ex: hood2018'])?>
-                        <div class="invalid-feedback text-center">Por favor insira o nome do usuário</div>
-                        <?= $this->Form->control('password', ['label'=> 'Senha', 'class'=>'form-control', 'required' => 'required', 'placeholder' => 'Senha']) ?>
-                        <div class="row mt-2">
-                            <div class="col-12 my-2 text-right">
-                                <?= $this->Form->button('Cadastrar', ['class' => 'btn btn-success btn-block']) ?>
-                            </div>
-                            <div class="col-12 my-2">
-                                <a class="btn btn-secundary btn-block" href="<?= $this->url->build('/users/login'); ?>">Voltar<!--  para a Home --></a>
-                            </div>
-                        </div>
-                    <?= $this->Form->end() ?>
-                </div>
-            </div>
-        </div>
+<!-- Conteúdo da página -->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Adicionar Usuário</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        
+    </div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-10 mx-auto">
+        <?= $this->Form->create($user) ?>
+            <?= $this->Form->control('login',[ 'label' => 'Usuário','class'=>'form-control', 'required' => 'required', 'placeholder' => 'Ex: hood2018'])?>
+            <div class="invalid-feedback text-center">Por favor insira o nome do usuário</div>
+            <?= $this->Form->control('password', ['label'=> 'Senha', 'class'=>'form-control', 'required' => 'required', 'placeholder' => 'Senha']) ?>
+            <div class="form-group">
+             <button class="btn btn-success">Salvar</button>
+             <a class="btn btn-primary" href="javascript:history.back(-1);">Voltar</a>
+            </div> 
+        <?= $this->Form->end() ?>
+    </div>
+</div>
+<!-- /row -->
+
+
+</main>
+<!-- FIM Conteúdo da página -->
