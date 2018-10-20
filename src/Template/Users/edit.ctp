@@ -26,7 +26,7 @@
                 <input type="password" name="password" class="form-control" placeholder="Senha para o usuário" required value="<?= $user->password ?>">
             </div>
             <div class="form-group">
-               <button class="btn btn-success">Salvar</button>
+               <button class="btn btn-success">Salvar </button>
             </div> 
         <?= $this->Form->end() ?>
     </div>
