@@ -12,10 +12,11 @@ $titulocms = 'Fucking CMS';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('bootstrap.min.css') ?>
-    <?= $this->Html->css('dashboard.css') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('dashboard.css') ?>
+   
      <!-- Icones fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"

@@ -47,11 +47,12 @@ class QuestionsTable extends Table
         $validator
             ->nonNegativeInteger('id')
             ->allowEmpty('id', 'create');
-
+        /*
         $validator
             ->dateTime('creted_at')
             ->requirePresence('creted_at', 'create')
             ->notEmpty('creted_at');
+        */
 
         $validator
             ->dateTime('updated_at')
@@ -67,12 +68,12 @@ class QuestionsTable extends Table
             ->scalar('answer')
             ->maxLength('answer', 255)
             ->allowEmpty('answer');
-
+        /*
         $validator
             ->boolean('active')
             ->requirePresence('active', 'create')
             ->notEmpty('active');
-
+        */
         return $validator;
     }
 }
