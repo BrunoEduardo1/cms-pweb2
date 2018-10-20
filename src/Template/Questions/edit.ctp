@@ -10,7 +10,7 @@
     <h1 class="h2">Perguntas Frequentes</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
-        <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['action' => 'delete', $question->id],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Excluir', 'escape' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?>
+        <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['action' => 'delete', $question->id],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Excluir', 'escape' => false, 'confirm' => __('Tem certeza que quer deletar a pergunta "{0}"?', $question->question)]) ?>
     </div>
 </div>
 </div>
@@ -28,6 +28,7 @@
             </div> 
             <div class="form-group">
                <button class="btn btn-success">Salvar</button>
+                <a href="javascript:history.back(-1);" class="btn btn-primary">Voltar </a>
             </div> 
         <?= $this->Form->end() ?>
     </div>

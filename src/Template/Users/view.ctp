@@ -28,7 +28,11 @@
                     <?= !empty($user->updated_at)? 'e atualizada em '. h($user->updated_at->format('d/m/Y H:i')) : '.' ?>
                     </li>
                 </ul>
+                <div class="text-right">
+                    <a href="javascript:history.back(-1);" class="btn btn-outline-secondary btn-sm">Voltar </a>                   
+                </div>
             </div>
+                
         </div>
     </div>
 </div>

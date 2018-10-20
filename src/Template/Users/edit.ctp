@@ -26,7 +26,8 @@
                 <input type="password" name="password" class="form-control" placeholder="Senha para o usuário" required value="<?= $user->password ?>">
             </div>
             <div class="form-group">
-               <button class="btn btn-success">Salvar </button>
+                <button class="btn btn-success" type="submit">Salvar </button>
+                <a href="javascript:history.back(-1);" class="btn btn-primary">Voltar </a>
             </div> 
         <?= $this->Form->end() ?>
     </div>

@@ -24,10 +24,14 @@
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
                   <p> <?= h($question->answer) ?></p>
-                </blockquote>
+              </blockquote>
+              <div class="text-right">
+                <a href="javascript:history.back(-1);" class="btn btn-outline-secondary btn-sm">Voltar </a>                   
             </div>
         </div>
+
     </div>
+</div>
 </div>
 <!-- /row -->
 
