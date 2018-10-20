@@ -26,7 +26,7 @@ $titulocms = 'Fucking CMS';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <?= $this->Flash->render() ?>
+   
     <div class="container-fluid">
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Gestor</a>
@@ -40,6 +40,7 @@ $titulocms = 'Fucking CMS';
         <!-- side bar -->
         <?= $this->element('sidebar')?>
         <!-- [fim] side bar -->
+         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     </div>
 <footer>

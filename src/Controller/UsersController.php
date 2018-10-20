@@ -28,8 +28,8 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                //return $this->redirect(['action' => 'index']);
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect(['action' => 'index']);
+                //return $this->redirect($this->Auth->redirectUrl()); //home
             }
             $this->Flash->error('Login ou senha incorreta.');
         }
