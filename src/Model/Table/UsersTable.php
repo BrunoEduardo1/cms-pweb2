@@ -47,11 +47,11 @@ class UsersTable extends Table
         $validator
             ->nonNegativeInteger('id')
             ->allowEmpty('id', 'create');
-
+        /*
         $validator
             ->dateTime('creted_at')
             ->requirePresence('creted_at', 'create')
-            ->notEmpty('creted_at');
+            ->notEmpty('creted_at'); */
 
         $validator
             ->dateTime('updated_at')
@@ -68,11 +68,12 @@ class UsersTable extends Table
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
             ->notEmpty('password');
-
+        /*
         $validator
             ->boolean('active')
             ->requirePresence('active', 'create')
             ->notEmpty('active');
+        */
 
         return $validator;
     }
