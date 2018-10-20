@@ -16,7 +16,10 @@ $titulocms = 'Fucking CMS';
     <?= $this->Html->css('dashboard.css') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
-
+     <!-- Icones fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+          crossorigin="anonymous">
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -24,7 +27,7 @@ $titulocms = 'Fucking CMS';
 <body>
     <?= $this->Flash->render() ?>
     <div class="container-fluid">
-        <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Gestor</a>
             <input class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
             <ul class="navbar-nav px-3">
@@ -33,12 +36,15 @@ $titulocms = 'Fucking CMS';
             </li>
             </ul>
         </nav>
-        <!-- side bar -->
-        
-        <!-- side bar -->
-        <div class="row">
-            <?= $this->fetch('content') ?>
+         <div class="container">
+            <div class="row">
+                <!-- side bar -->
+                <?= $this->element('sidebar')?>
+                <!-- side bar -->
+                <?= $this->fetch('content') ?>
+            </div>
         </div>
+
     </div>
 <footer>
 </footer>
