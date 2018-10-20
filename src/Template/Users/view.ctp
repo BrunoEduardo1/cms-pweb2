@@ -22,8 +22,15 @@
                 <h5 class="h5"><i class="fas fa-address-card mr-2"></i>Informações do usuário</h5>
             </div>
             <div class="card-body p-5">
+               <div class="row">
+                    <div class="col-4 col-md-2 col-lg-1">
+                        <h2 class="display-4"><i class="fas fa-user-circle"></i></h2>
+                    </div>
+                    <div class="col text-left my-auto">
+                        <p class="h4"><?= h($user->login) ?></p>
+                    </div>
+                </div>
                 <ul class="list-unstyled">
-                    <li class="h4">Login: <?= h($user->login) ?></li>
                     <li>Conta cadastrada em <?= h($user->creted_at->format('d/m/Y H:i')) ?>
                     <?= !empty($user->updated_at)? 'e atualizada em '. h($user->updated_at->format('d/m/Y H:i')) : '.' ?>
                     </li>

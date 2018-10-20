@@ -52,13 +52,8 @@
                     </div>
                      <div class="col-12">
                         <div class="form-group">
-                            <textarea class="form-control" name="content" placeholder="Conteúdo Da Mensagem" required></textarea>
+                            <textarea class="form-control" name="content" placeholder="Conteúdo Da Mensagem"  style="resize: none;" rows="5" required></textarea>
                         </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-11 text-justify mx-auto">
-                        <p> <?= h($message->content) ?></p>
                     </div>
                 </div>
                 <div class="row">
