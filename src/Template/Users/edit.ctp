@@ -4,30 +4,35 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Edit User') ?></legend>
-        <?php
-            echo $this->Form->control('creted_at');
-            echo $this->Form->control('updated_at');
-            echo $this->Form->control('login');
-            echo $this->Form->control('password');
-            echo $this->Form->control('active');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<!-- Conteúdo da página -->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Editar Usuário</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['action' => 'delete', $user->id],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Excluir', 'escape' => false, 'confirm' => __('Deletar o usuário "{0}"?', $user->login)]) ?>
+    </div>
 </div>
+</div>
+<div class="row">
+    <div class="col-10 mx-auto">
+        <?= $this->Form->create($user) ?>
+            <div class="form-group">
+                <label for="login">Login</label>
+                <input type="text" name="login" class="form-control" placeholder="Nome do usuário" required value="<?= $user->login ?>">
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" name="password" class="form-control" placeholder="Senha para o usuário" required value="<?= $user->password ?>">
+            </div>
+            <div class="form-group">
+               <button class="btn btn-success">Salvar</button>
+            </div> 
+        <?= $this->Form->end() ?>
+    </div>
+</div>
+<!-- /row -->
+
+
+</main>
+<!-- FIM Conteúdo da página -->
