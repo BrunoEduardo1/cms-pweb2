@@ -16,7 +16,7 @@
 </div>
 <div class="row">
     <div class="col-10 mx-auto">
-        <?= $this->Form->create($information) ?>
+        <?= $this->Form->create() ?>
             <div class="form-group">
                 <div class="col-auto">
                   <div class="input-group mb-2">
@@ -63,7 +63,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fab fa-youtube"></i></div>
                     </div>
-                     <input type="text" name="youtube" class="form-control" placeholder="youtube" <?= !empty($information->youtube) ? 'value="'.$information->youtube.'"' : '' ;?>>
+                     <input type="text" name="youtube" class="form-control" placeholder="youtube" <?= !empty($information->youtube) ? 'disabled value="'.$information->youtube.'"' : '' ;?>>
                   </div>
                 </div>
             </div>
