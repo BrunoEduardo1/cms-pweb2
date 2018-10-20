@@ -13,13 +13,21 @@ use App\Controller\AppController;
 class QuestionsController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+        //layout
+        $this->viewBuilder()->setLayout('admin');     
+    }
+
     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
      */
     public function index()
-    {
+    {   
+
         $questions = $this->paginate($this->Questions);
 
         $this->set(compact('questions'));
