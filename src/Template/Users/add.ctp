@@ -13,13 +13,13 @@
                     <?= $this->Form->create() ?>
                         <?= $this->Form->control('login',[ 'label' => 'Usuário','class'=>'form-control', 'required' => 'required', 'placeholder' => 'Ex: hood2018'])?>
                         <div class="invalid-feedback text-center">Por favor insira o nome do usuário</div>
-                        <?= $this->Form->control('password', ['label'=> 'Senha', 'class'=>'form-control', 'required' => 'required']) ?>
+                        <?= $this->Form->control('password', ['label'=> 'Senha', 'class'=>'form-control', 'required' => 'required', 'placeholder' => 'Senha']) ?>
                         <div class="row mt-2">
                             <div class="col-12 my-2 text-right">
                                 <?= $this->Form->button('Cadastrar', ['class' => 'btn btn-outline-primary btn-block']) ?>
                             </div>
                             <div class="col-12 my-2">
-                                <a class="btn btn-outline-danger btn-block" href="<?= $this->url->build('/'); ?>">Voltar<!--  para a Home --></a>
+                                <a class="btn btn-outline-danger btn-block" href="<?= $this->url->build('/users/login'); ?>">Voltar<!--  para a Home --></a>
                             </div>
                         </div>
                     <?= $this->Form->end() ?>
