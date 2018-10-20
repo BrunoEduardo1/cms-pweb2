@@ -45,6 +45,16 @@
             <?php endforeach; ?>
         </tbody>
       </table>
+      <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('Primeira')) ?>
+            <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('Próxima') . ' >') ?>
+            <?= $this->Paginator->last(__('Última') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    </div>
     </div>
     <!-- /Col banners table -->
   </div>
