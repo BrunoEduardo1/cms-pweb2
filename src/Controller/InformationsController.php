@@ -24,10 +24,11 @@ class InformationsController extends AppController
      */
     public function index()
     {
-        $informations = $this->paginate($this->Informations);
 
-        $this->set(compact('informations'));
         return $this->redirect(['action' => 'add']);
+        $informations = $this->paginate($this->Informations);
+        $this->set(compact('informations'));
+        
     }
 
     /**
@@ -57,11 +58,11 @@ class InformationsController extends AppController
         if ($this->request->is('post')) {
             $information = $this->Informations->patchEntity($information, $this->request->getData());
             if ($this->Informations->save($information)) {
-                $this->Flash->success(__('The information has been saved.'));
+                $this->Flash->success(__('Informações salvas com sucesso.'));
 
                 return $this->redirect(['action' => 'add']);
             }
-            $this->Flash->error(__('The information could not be saved. Please, try again.'));
+            $this->Flash->error(__('Ocorreu um erro em salvar as informações. Tente novamente.'));
         }
         //Colunas
         $cols = ['id'/*,'adress', 'twitter','instgram','facebook','youtube', 'phone','email'*/];
@@ -87,11 +88,11 @@ class InformationsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $information = $this->Informations->patchEntity($information, $this->request->getData());
             if ($this->Informations->save($information)) {
-                $this->Flash->success(__('The information has been saved.'));
+                $this->Flash->success(__('Informações atualizadas'));
 
                 return $this->redirect(['action' => 'edit', $information->id]);
             }
-            $this->Flash->error(__('The information could not be saved. Please, try again.'));
+            $this->Flash->error(__('Ocorreu um erro em salvar as informações. Tente novamente.'));
         }
         $this->set(compact('information'));
     }
@@ -104,7 +105,8 @@ class InformationsController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
-    {
+    {   
+        return $this->redirect(['action' => 'add']);
         $this->request->allowMethod(['post', 'delete']);
         $information = $this->Informations->get($id);
         if ($this->Informations->delete($information)) {
