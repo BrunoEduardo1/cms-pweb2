@@ -37,8 +37,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="photos">Outras fotos</label>
-                    <input type="file" name="photos" id="photos" multiple>    
+                    <label class="btn btn-outline-secondary" for="photos">
+                        <i class="fas fa-upload"></i> Outras fotos <input type="file" name="photos" id="photos" multiple hidden>
+                    </label>
+                    <?php /*<label for="photos">Outras fotos</label> <input type="file" name="photos" id="photos" multiple> */ ?>  
                 </div>
 
                 <div class="form-group">
