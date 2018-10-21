@@ -27,6 +27,7 @@
             echo $this->Form->control('updated_at');
             echo $this->Form->control('title');
             echo $this->Form->control('text');
+            echo $this->Form->control('photo');
             echo $this->Form->control('slug');
             echo $this->Form->control('active');
         ?>

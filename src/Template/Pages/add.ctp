@@ -4,27 +4,53 @@
  * @var \App\Model\Entity\Page $page
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Pages'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Pages Photos'), ['controller' => 'PagesPhotos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pages Photo'), ['controller' => 'PagesPhotos', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="pages form large-9 medium-8 columns content">
-    <?= $this->Form->create($page) ?>
-    <fieldset>
-        <legend><?= __('Add Page') ?></legend>
-        <?php
-            echo $this->Form->control('creted_at');
-            echo $this->Form->control('updated_at');
-            echo $this->Form->control('title');
-            echo $this->Form->control('text');
-            echo $this->Form->control('slug');
-            echo $this->Form->control('active');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<!-- Conteúdo da página -->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Adicionar Página</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        
+    </div>
 </div>
+</div>
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <?= $this->Form->create($page, ['type' => 'file']) ?>   
+                <div class="form-group">
+                    <?= $this->Form->control('title',[ 'label' => 'Título *','class'=>'form-control', 'required' => 'required', 'placeholder' => 'Digite o título'])?>
+                     <div class="invalid-feedback text-center">Por favor insira o título da página</div>
+                </div>
+               
+                <div class="form-group">
+                    <?= $this->Form->control('photo', ['label'=> 'Imagem Principal *', 'class'=>'', 'type' => 'file', 'required' => 'required', 'placeholder' => 'Imagem']) ?>
+                
+                </div>
+
+                <div class="form-group">
+                    <label for="text">Texto da página *</label>
+                    <textarea class="form-control mb-2" name="text" id="text" style="resize: none;" rows="5" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <?= $this->Form->control('slug', ['label'=> 'Fácil acesso *', 'class'=>'form-control', 'required' => 'required', 'placeholder' => 'https://seusite.com/facil-acesso']) ?>
+                </div>
+
+                <div class="form-group">
+                    <label for="photos">Outras fotos</label>
+                    <input type="file" name="photos" id="photos" multiple>    
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-success">Salvar</button>
+                    <a class="btn btn-primary" href="javascript:history.back(-1);">Voltar</a>
+                </div>
+            <?= $this->Form->end() ?>
+        </div>     
+    </div>
+</div>
+<!-- /row -->
+
+
+</main>
+<!-- FIM Conteúdo da página -->
