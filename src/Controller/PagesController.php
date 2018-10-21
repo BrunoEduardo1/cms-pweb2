@@ -111,9 +111,13 @@ class PagesController extends AppController
      */
     public function edit($id = null)
     {
-        $page = $this->Pages->get($id, [
-            'contain' => []
-        ]);
+        // $page = $this->Pages->get($id, [
+        //     'contain' => ['PagesPhotos']
+        // ]);
+        $page = $this->Pages->find('all')->contain(['PagesPhotos'])
+        ->select(['id', 'title', 'text', 'slug', 'photo'])
+        ->where(['Pages.id' => $id])->first();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             
             $data  = $this->request->getData();

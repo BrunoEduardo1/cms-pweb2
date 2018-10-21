@@ -35,7 +35,7 @@
                 <td><?= h($page->updated_at) ?></td>
                 <td><?= h($page->title) ?></td>
                 <!-- <td><?= h($page->slug) ?></td> -->
-                <td><?= h($page->active) ?></td>
+                <td><?= $page->active == 1 ? 'Sim': 'Não' ?></td>
                 <td class="actions">
                     <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-eye']), ['action' => 'view', $page->id], ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Preview', 'escape' => false]) ?>
 

@@ -1,5 +1,7 @@
 $(function () {
 //==== dropify =====
+
+//if ($(this).hasClass('dropify')) {
 $('.dropify').dropify({
   messages: {
    'default': 'Escolher imagem',
@@ -19,7 +21,8 @@ $('.dropify').dropify({
 });
 //==== /dropify =====
 //-     slider
- $('.slider').bxSlider({
+if ($(this).hasClass('slider')) {
+  $('.slider').bxSlider({
   speed: 500,
   tickerHover:true,
   auto:true,
@@ -35,5 +38,7 @@ $('.dropify').dropify({
           //slideWidth: 600,
         });
 //-     /slider
+}
+ 
 
 });

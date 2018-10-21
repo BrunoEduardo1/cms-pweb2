@@ -21,11 +21,10 @@
                     <?= $this->Form->control('title',[ 'label' => 'Título *','class'=>'form-control', 'required' => 'required', 'placeholder' => 'Digite o título'])?>
                      <div class="invalid-feedback text-center">Por favor insira o título da página</div>
                 </div>
-               
+
                 <div class="form-group">
-                    <?= $this->Form->control('photo', ['label'=> 'Imagem Principal *', 'class'=>'', 'type' => 'file', 'required' => 'required', 'placeholder' => 'Imagem',' accept'=> 'image/*']) ?>
-                
-                </div>
+                    <input type="file" class="dropify" name="photo" data-max-file-size="2M"  data-min-width="640" data-height="300" data-allowed-file-extensions="jpg jpeg png psd" accept="image/*" required>
+                 </div>
 
                 <div class="form-group">
                     <label for="text">Texto da página *</label>
