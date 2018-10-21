@@ -17,78 +17,96 @@
 <div class="row">
     <div class="col-10 mx-auto">
         <?= $this->Form->create() ?>
-            <div class="form-group">
-                <div class="col-auto">
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <div class="col-auto">
+                          <label class="sr-only" for="email">Email</label>
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                            </div>
+                             <input type="text" name="email" id="email" class="form-control" placeholder="Email" <?= !empty($information->email) ? 'value="'.$information->email.'"' : '' ;?>>
+                          </div>
+                        </div>
                     </div>
-                       <input type="text" name="adress" class="form-control" placeholder="Endereço" <?= !empty($information->adress) ? 'disabled value="'.$information->adress.'"' : '' ;?>>
-                  </div>
+
+                 </div>
+                 <div class="col-12 col-md-6">
+                    <div class="form-group">
+                         <div class="col-auto">
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fab fa-twitter"></i></div>
+                            </div>
+                              <input type="text" name="twitter" class="form-control" placeholder="Twitter" <?= !empty($information->twitter) ? 'value="'.$information->twitter.'"' : '' ;?>>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                     <div class="form-group">
+                        <div class="col-auto">
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fab fa-instagram"></i></div>
+                            </div>
+                              <input type="text" name="instgram" class="form-control" placeholder="Instagram" <?= !empty($information->instgram) ? 'value="'.$information->instgram.'"' : '' ;?>>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <div class="col-auto">
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fab fa-facebook-f"></i></div>
+                            </div>
+                              <input type="text" name="facebook" class="form-control" placeholder="Facebook" <?= !empty($information->facebook) ? 'value="'.$information->facebook.'"' : '' ;?>>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                         <div class="col-auto">
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fab fa-youtube"></i></div>
+                            </div>
+                             <input type="text" name="youtube" class="form-control" placeholder="youtube" <?= !empty($information->youtube) ? 'value="'.$information->youtube.'"' : '' ;?>>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">            
+                    <div class="form-group">
+                        <div class="col-auto">
+                          <label class="sr-only" for="phone">Número</label>
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fas fa-phone"></i></div>
+                            </div>
+                              <input type="text" name="phone" class="form-control" placeholder="Número" <?= !empty($information->phone) ? 'value="'.$information->phone.'"' : '' ;?>>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12">           
+                    <div class="form-group">
+                        <div class="col-auto">
+                          <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                            </div>
+                               <input type="text" name="adress" class="form-control" placeholder="Endereço" <?= !empty($information->adress) ? 'value="'.$information->adress.'"' : '' ;?>>
+                          </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                 <div class="col-auto">
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fab fa-twitter"></i></div>
-                    </div>
-                      <input type="text" name="twitter" class="form-control" placeholder="Twitter" <?= !empty($information->twitter) ? 'disabled value="'.$information->twitter.'"' : '' ;?>>
-                  </div>
-                </div>
-            </div>
-             <div class="form-group">
-                <div class="col-auto">
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fab fa-instagram"></i></div>
-                    </div>
-                      <input type="text" name="instgram" class="form-control" placeholder="Instagram" <?= !empty($information->instgram) ? 'disabled value="'.$information->instgram.'"' : '' ;?>>
-                  </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-auto">
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fab fa-facebook-f"></i></div>
-                    </div>
-                      <input type="text" name="facebook" class="form-control" placeholder="Facebook" <?= !empty($information->facebook) ? 'disabled value="'.$information->facebook.'"' : '' ;?>>
-                  </div>
-                </div>
-            </div>
-            <div class="form-group">
-                 <div class="col-auto">
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fab fa-youtube"></i></div>
-                    </div>
-                     <input type="text" name="youtube" class="form-control" placeholder="youtube" <?= !empty($information->youtube) ? 'disabled value="'.$information->youtube.'"' : '' ;?>>
-                  </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-auto">
-                  <label class="sr-only" for="phone">Número</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="fas fa-phone"></i></div>
-                    </div>
-                      <input type="text" name="phone" class="form-control" placeholder="Número" <?= !empty($information->phone) ? 'disabled value="'.$information->phone.'"' : '' ;?>>
-                  </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-auto">
-                  <label class="sr-only" for="email">Email</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><i class="far fa-envelope"></i></div>
-                    </div>
-                     <input type="text" name="email" id="email" class="form-control" placeholder="Email" <?= !empty($information->email) ? 'disabled value="'.$information->email.'"' : '' ;?>>
-                  </div>
-                </div>
-            </div>
+            <!-- row -->
             <div class="form-group">
               <?php if (empty($information)) : ?>
                 <button class="btn btn-success" type="submit">Salvar</button>
