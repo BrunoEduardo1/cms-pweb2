@@ -27,6 +27,7 @@ class InformationsController extends AppController
         $informations = $this->paginate($this->Informations);
 
         $this->set(compact('informations'));
+        return $this->redirect(['action' => 'add']);
     }
 
     /**
@@ -58,15 +59,16 @@ class InformationsController extends AppController
             if ($this->Informations->save($information)) {
                 $this->Flash->success(__('The information has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The information could not be saved. Please, try again.'));
         }
         //Colunas
-        $cols = ['adress', 'twitter','instgram','facebook','youtube', 'phone','email'];
+        $cols = ['id'/*,'adress', 'twitter','instgram','facebook','youtube', 'phone','email'*/];
 
         if ($information = $this->Informations->find('all')->select($cols)->first()) {
              $this->set('information', $information);
+             return $this->redirect(['action' => 'edit', $information->id]);
         } 
     }
 
@@ -87,7 +89,7 @@ class InformationsController extends AppController
             if ($this->Informations->save($information)) {
                 $this->Flash->success(__('The information has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'edit', $information->id]);
             }
             $this->Flash->error(__('The information could not be saved. Please, try again.'));
         }
@@ -111,6 +113,6 @@ class InformationsController extends AppController
             $this->Flash->error(__('The information could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'add']);
     }
 }

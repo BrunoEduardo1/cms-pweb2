@@ -23,7 +23,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
                     </div>
-                       <input type="text" name="adress" class="form-control" placeholder="Endereço">
+                       <input type="text" name="adress" class="form-control" placeholder="Endereço" <?= !empty($information->adress) ? 'disabled value="'.$information->adress.'"' : '' ;?>>
                   </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fab fa-twitter"></i></div>
                     </div>
-                      <input type="text" name="twitter" class="form-control" placeholder="Twitter">
+                      <input type="text" name="twitter" class="form-control" placeholder="Twitter" <?= !empty($information->twitter) ? 'disabled value="'.$information->twitter.'"' : '' ;?>>
                   </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fab fa-instagram"></i></div>
                     </div>
-                      <input type="text" name="instgram" class="form-control" placeholder="Instagram">
+                      <input type="text" name="instgram" class="form-control" placeholder="Instagram" <?= !empty($information->instgram) ? 'disabled value="'.$information->instgram.'"' : '' ;?>>
                   </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fab fa-facebook-f"></i></div>
                     </div>
-                      <input type="text" name="facebook" class="form-control" placeholder="Facebook">
+                      <input type="text" name="facebook" class="form-control" placeholder="Facebook" <?= !empty($information->facebook) ? 'disabled value="'.$information->facebook.'"' : '' ;?>>
                   </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fas fa-phone"></i></div>
                     </div>
-                      <input type="text" name="phone" class="form-control" placeholder="Número">
+                      <input type="text" name="phone" class="form-control" placeholder="Número" <?= !empty($information->phone) ? 'disabled value="'.$information->phone.'"' : '' ;?>>
                   </div>
                 </div>
             </div>
@@ -85,12 +85,16 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="far fa-envelope"></i></div>
                     </div>
-                     <input type="text" name="email" id="email" class="form-control" placeholder="Email">
+                     <input type="text" name="email" id="email" class="form-control" placeholder="Email" <?= !empty($information->email) ? 'disabled value="'.$information->email.'"' : '' ;?>>
                   </div>
                 </div>
             </div>
             <div class="form-group">
-               <button class="btn btn-success" type="submit">Salvar</button>
+              <?php if (empty($information)) : ?>
+                <button class="btn btn-success" type="submit">Salvar</button>
+                <?php else: ?>
+                  <a href="<?= $this->Url->build('/informations/edit/'.$information->id)?> " class="btn btn-outline-secundary">Editar</a>
+              <?php endif; ?>
             </div> 
         <?= $this->Form->end() ?>
     </div>
