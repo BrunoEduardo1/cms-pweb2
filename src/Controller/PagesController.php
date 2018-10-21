@@ -27,8 +27,10 @@ class PagesController extends AppController
      * @return \Cake\Http\Response|void
      */
     public function index()
-    {
-        $pages = $this->paginate($this->Pages);
+    {   
+        $page = $this->Pages->find('all')->where(['Pages.active' => 1]);
+        
+        $pages = $this->paginate($page);
 
         $this->set(compact('pages'));
     }
@@ -43,6 +45,7 @@ class PagesController extends AppController
     public function view($id = null)
     {
         $page = $this->Pages->get($id, [
+            'conditions' => ['Pages.active' => 1],
             'contain' => ['PagesPhotos']
         ]);
 
@@ -112,7 +115,18 @@ class PagesController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
+            
+            $data  = $this->request->getData();
+            $page->title = $data['title'];
+            $page->text  = $data['text'];
+            $page->slug  = $data['slug'];
+
+            if(!empty($data['photo']['name'])){
+                $path = '/page_pic/'; // /Webroot/public/page_pic/
+                $this->Upload->setPath($path);
+                $page->photo = $this->Upload->copyUploadedFile($data['photo'], '');                     
+            }
+            
             if ($this->Pages->save($page)) {
                 $this->Flash->success(__('The page has been saved.'));
 
@@ -134,7 +148,8 @@ class PagesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $page = $this->Pages->get($id);
-        if ($this->Pages->delete($page)) {
+        $page->active = 0;
+        if ($this->Pages->save($page)) {
             $this->Flash->success(__('The page has been deleted.'));
         } else {
             $this->Flash->error(__('The page could not be deleted. Please, try again.'));

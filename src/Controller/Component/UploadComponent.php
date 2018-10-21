@@ -13,8 +13,8 @@ class UploadComponent extends Component
     var $path = "";
 
     var $maxSize; //Tamanho máximo permitido
-
-    var $allowedExtensions = array("jpg","jpeg","png","gif","bmp","mp3","wma","mp4","wmv","avi","MP3","JPG","pdf","doc","xls","docx","rtf"); //Arquivos permitidos
+    //"bmp","gif","mp3","wma","mp4","wmv","avi","MP3","pdf","doc","xls","docx","rtf"
+    var $allowedExtensions = array("jpg","jpeg","png","JPG",'PNG'); //Arquivos permitidos
 
     var $logErro = ""; //Log de erro
 
