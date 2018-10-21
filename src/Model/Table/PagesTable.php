@@ -53,11 +53,11 @@ class PagesTable extends Table
         $validator
             ->nonNegativeInteger('id')
             ->allowEmpty('id', 'create');
-
+        /*
         $validator
             ->dateTime('creted_at')
             ->requirePresence('creted_at', 'create')
-            ->notEmpty('creted_at');
+            ->notEmpty('creted_at');*/
 
         $validator
             ->dateTime('updated_at')
@@ -76,18 +76,18 @@ class PagesTable extends Table
 
         $validator
             ->scalar('text')
-            ->allowEmpty('text');
+            ->notEmpty('text');
 
         $validator
             ->scalar('slug')
             ->maxLength('slug', 255)
             ->requirePresence('slug', 'create')
             ->notEmpty('slug');
-
+        /*
         $validator
             ->boolean('active')
             ->requirePresence('active', 'create')
-            ->notEmpty('active');
+            ->notEmpty('active');*/
 
         return $validator;
     }
