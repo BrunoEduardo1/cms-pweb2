@@ -17,6 +17,7 @@ class PagesController extends AppController
     {
         parent::initialize();
         $this->viewBuilder()->setLayout('admin');
+        $this->loadComponent('Upload');
         // permitir apenas estas ações com  o user sem login
         //$this->Auth->allow(['logout', 'cadastro']);
     }
@@ -57,18 +58,43 @@ class PagesController extends AppController
     {
         $page = $this->Pages->newEntity();
         if ($this->request->is('post')) {
-            //$page = $this->Pages->patchEntity($page, $this->request->getData());
-            echo "<pre>";
+
             $data  = $this->request->getData();
-            print_r($data);
-            echo "</pre>";
-            die();
+            $page->title = $data['title'];
+            $page->text  = $data['text'];
+            $page->slug  = $data['slug'];
+            //echo count($data['extra']);die();
+            if(!empty($data['photo']['name'])){
+                $path = '/page_pic/'; // /Webroot/public/page_pic/
+                $this->Upload->setPath($path);
+                $page->photo = $this->Upload->copyUploadedFile($data['photo'], '');                     
+            }
+
             if ($this->Pages->save($page)) {
                 $this->Flash->success(__('The page has been saved.'));
+                //fotos extras
+                $this->loadModel('PagesPhotos');
+                foreach ($data['extra'] as $photos) :
+                    
+                    if (count($data['extra']) > 5 ) : $this->Flash->error(__('Quantidade inadequada de imagens extras.')); break; endif;
+                        
+                    if (!empty($photos['name'])) :
+                        $path = '/page_pic/'; 
+                        $this->Upload->setPath($path);
+
+                        $extra_photo = $this->PagesPhotos->newEntity();
+                        $extra_photo->page_id = $page->id;
+                        $extra_photo->photo = $this->Upload->copyUploadedFile($photos, ''); 
+                        if (!$this->PagesPhotos->save($extra_photo)) {
+                           $this->Flash->error(__('Algumas imagens não foram salvas. Por favor, verifique na edição da página'));
+                        }
+                        // print_r($this->Upload->getLog());
+                    endif;
+                endforeach;
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('Erro em salvar a página. Por favor, tente novamente.'));
         }
         $this->set(compact('page'));
     }
