@@ -57,7 +57,12 @@ class PagesController extends AppController
     {
         $page = $this->Pages->newEntity();
         if ($this->request->is('post')) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
+            //$page = $this->Pages->patchEntity($page, $this->request->getData());
+            echo "<pre>";
+            $data  = $this->request->getData();
+            print_r($data);
+            echo "</pre>";
+            die();
             if ($this->Pages->save($page)) {
                 $this->Flash->success(__('The page has been saved.'));
 

@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label class="btn btn-outline-secondary" for="photos">
-                        <i class="fas fa-upload"></i> Outras fotos <input type="file" name="photos" id="photos"  onchange="$('#upload-file-info').html(this.files[0].name);$('#upload-file-info').fadeIn();" multiple hidden>
+                        <i class="fas fa-upload"></i> Outras fotos <input type="file" name="extra[]" id="photos"  onchange="$('#upload-file-info').html(this.files[files.length-1].name);$('#upload-file-info').fadeIn();" multiple hidden>
                     </label>
                     <span class='label label-info' id="upload-file-info" style="display: none;"></span>
                     <?php /*<label for="photos">Outras fotos</label> <input type="file" name="photos" id="photos" multiple> */ ?>  
