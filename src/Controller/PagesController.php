@@ -134,11 +134,40 @@ class PagesController extends AppController
             if ($this->Pages->save($page)) {
                 $this->Flash->success(__('The page has been saved.'));
 
+                //fotos extras
+                $this->loadModel('PagesPhotos');
+                
+                $sent  = count($data['extra']);
+                
+                $extra = count($page->pages_photos);
+
+                foreach ($data['extra'] as $photos) :
+                    
+                    if ($sent > 5 || $extra == 5 || $extra+$sent > 5) : $this->Flash->error(__('Quantidade inadequada de imagens extras.')); break; endif;
+                        
+                    if (!empty($photos['name'])) :
+                        $path = '/page_pic/'; 
+                        $this->Upload->setPath($path);
+
+                        $extra_photo = $this->PagesPhotos->newEntity();
+                        $extra_photo->page_id = $page->id;
+                        $extra_photo->photo = $this->Upload->copyUploadedFile($photos, '');
+                       
+                        if ($this->Upload->verifyUpload($photos) || !$this->PagesPhotos->save($extra_photo)) {
+                           $this->Flash->error(__('Algumas imagens não foram salvas. Por favor, verifique na edição da página'));
+                        }
+                        
+                    endif;
+                endforeach;
+
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The page could not be saved. Please, try again.'));
         }
+        $fotooooos = count($page->pages_photos);
         $this->set(compact('page'));
+        $this->set(compact('fotooooos'));
+
     }
 
     /**

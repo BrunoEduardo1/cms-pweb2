@@ -97,16 +97,16 @@ class PagesPhotosController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id = null,$edit)
     {
         $this->request->allowMethod(['post', 'delete']);
         $pagesPhoto = $this->PagesPhotos->get($id);
         if ($this->PagesPhotos->delete($pagesPhoto)) {
-            $this->Flash->success(__('The pages photo has been deleted.'));
+            $this->Flash->success(__('Foto deletada'));
         } else {
-            $this->Flash->error(__('The pages photo could not be deleted. Please, try again.'));
+            $this->Flash->error(__('A foto não pode ser deletada. Tente novamente.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'Pages','action' => 'edit',$edit]);
     }
 }
