@@ -147,7 +147,7 @@ class GaleriesVideosController extends AppController
                 }
                 $this->Flash->error(__('Não possível salvar o vídeo na nova galeria. Tente novamente.'));
             elseif(!empty($data['galery_id'])) :
-                
+
                 $galeriesVideo->link = $data['link'];
                 $galeriesVideo->caption = $data['caption'];
                 $galeriesVideo->galery_id = $data['galery_id'];
@@ -184,3 +184,4 @@ class GaleriesVideosController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 }
+//Bruno Eduardo
