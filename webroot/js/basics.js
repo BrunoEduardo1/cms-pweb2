@@ -42,3 +42,9 @@ if ($(this).hasClass('slider')) {
  
 
 });
+
+function print_(pics) {
+        for (var i = 0; i < pics.length; i++) {
+            $('#imgs').append('<span class=\'label label-info mr-2\' id=\'upload-file-info\'>'+pics[i].name+' </span>');
+        }
+    }
