@@ -6,6 +6,7 @@
 /tmp/*
 /vendor/*
 /webroot/public/page_pic/*
+/webroot/public/news_pic/*
 
 # OS generated files #
 ######################
