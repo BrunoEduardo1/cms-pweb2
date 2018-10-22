@@ -16,8 +16,6 @@ class GaleriesController extends AppController
     {
         parent::initialize();
         $this->viewBuilder()->setLayout('admin');
-        // permitir apenas estas ações com  o user sem login
-        //$this->Auth->allow(['logout', 'cadastro']);
     }
     /**
      * Index method
@@ -106,9 +104,9 @@ class GaleriesController extends AppController
         $galery = $this->Galeries->get($id);
         $galery->active = 0;
         if ($this->Galeries->save($galery)) {
-            $this->Flash->success(__('The galery has been deleted.'));
+            $this->Flash->success(__('Galeria deletada'));
         } else {
-            $this->Flash->error(__('The galery could not be deleted. Please, try again.'));
+            $this->Flash->error(__('A galeria não pode ser deletada.'));
         }
         return $this->redirect(['controller'=> 'GaleriesVideos','action' => 'index']);
     }

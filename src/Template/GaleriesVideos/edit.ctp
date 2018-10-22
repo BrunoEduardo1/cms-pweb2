@@ -35,7 +35,7 @@
                     <div class="col">
                         <label for="galery_id">Galerias</label>
                         <select class="form-control" name="galery_id">
-                            <option>Criar Nova Galeria</option>
+                            <option value=''>Criar Nova Galeria</option>
                             <?php foreach ($galeries as $galery) : ?>
                                 <option value="<?=$galery->id?>" <?= ($galeriesVideo->galery_id == $galery->id) ? 'selected': '';?> ><?=$galery->name?></option>
                             <?php endforeach; ?>
