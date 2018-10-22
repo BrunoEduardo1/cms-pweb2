@@ -107,7 +107,7 @@ class GaleriesVideosController extends AppController
             // die();
             
         }
-        $galeries = $this->GaleriesVideos->Galeries->find('all')->select(['id','name'])->where(['Galeries.active'=>1]);
+        $galeries = $this->GaleriesVideos->Galeries->find('all')->select(['id','name'])->where(['Galeries.active'=>1, 'Galeries.type'=>'VIDEOS']);
         $this->set(compact('galeriesVideo', 'galeries'));
     }
 
@@ -160,7 +160,7 @@ class GaleriesVideosController extends AppController
                 $this->Flash->error(__('Erro em salvar o vídeo na geleria existente.'));
             endif;
         }
-        $galeries = $this->GaleriesVideos->Galeries->find('all')->select(['id','name'])->where(['Galeries.active'=>1]);
+        $galeries = $this->GaleriesVideos->Galeries->find('all')->select(['id','name'])->where(['Galeries.active'=>1, 'Galeries.type'=>'VIDEOS']);
         $this->set(compact('galeriesVideo', 'galeries'));
     }
 
