@@ -26,7 +26,9 @@ class MessagesController extends AppController
      */
     public function index()
     {
-        $messages = $this->paginate($this->Messages);
+        $messages = $this->Messages->find('all')->where(['Messages.active' => 1]);
+
+        $messages = $this->paginate($messages);
 
         $this->set(compact('messages'));
     }
@@ -102,7 +104,8 @@ class MessagesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $message = $this->Messages->get($id);
-        if ($this->Messages->delete($message)) {
+        $message->active = 0;
+        if ($this->Messages->save($message)) {
             $this->Flash->success(__('Mensagem deletada.'));
         } else {
             $this->Flash->error(__('O mensagem no pode ser deletada. Tente novamente.'));

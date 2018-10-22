@@ -116,7 +116,7 @@ class PagesController extends AppController
         // ]);
         $page = $this->Pages->find('all')->contain(['PagesPhotos'])
         ->select(['id', 'title', 'text', 'slug', 'photo'])
-        ->where(['Pages.id' => $id])->first();
+        ->where(['Pages.id' => $id,'Pages.active' => 1])->first();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             
@@ -132,7 +132,7 @@ class PagesController extends AppController
             }
             
             if ($this->Pages->save($page)) {
-                $this->Flash->success(__('The page has been saved.'));
+                $this->Flash->success(__('informações da página atualizadas.'));
 
                 //fotos extras
                 $this->loadModel('PagesPhotos');
@@ -152,7 +152,7 @@ class PagesController extends AppController
                         $extra_photo = $this->PagesPhotos->newEntity();
                         $extra_photo->page_id = $page->id;
                         $extra_photo->photo = $this->Upload->copyUploadedFile($photos, '');
-                       
+
                         if ($this->Upload->verifyUpload($photos) || !$this->PagesPhotos->save($extra_photo)) {
                            $this->Flash->error(__('Algumas imagens não foram salvas. Por favor, verifique na edição da página'));
                         }
@@ -162,7 +162,7 @@ class PagesController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('Erro em salvar a página. Por favor, tente novamente.'));
         }
         $fotooooos = count($page->pages_photos);
         $this->set(compact('page'));

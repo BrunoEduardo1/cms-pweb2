@@ -10,7 +10,7 @@
     <h1 class="h2">Páginas</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
-         <a class="btn btn-sm btn-outline-secondary" href="<?=$this->Url->build('/pages/add')?>">Novo Página</a>
+         <a class="btn btn-sm btn-outline-secondary" href="<?=$this->Url->build('/pages/add')?>">Nova Página</a>
      </div>
 </div>
 </div>
@@ -37,7 +37,7 @@
                 <!-- <td><?= h($page->slug) ?></td> -->
                 <td><?= $page->active == 1 ? 'Sim': 'Não' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-eye']), ['action' => 'view', $page->id], ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Preview', 'escape' => false]) ?>
+                    <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-eye']), ['action' => 'edit', $page->id], ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Preview', 'escape' => false]) ?>
 
                     <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-edit']), ['action' => 'edit', $page->id], ['class' => 'btn btn-primary btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Editar', 'escape' => false]) ?>
 

@@ -48,7 +48,9 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
+        $users = $this->Users->find('all')->where(['Users.active' => 1]);
+
+        $users = $this->paginate($users);
 
         $this->set(compact('users'));
     }
@@ -124,7 +126,8 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
+        $user->active = 0;
+        if ($this->Users->save($user)) {
             $this->Flash->success(__('Usuário Deletado.'));
         } else {
             $this->Flash->error(__('O usuário no pode ser deletado. Tente novamente.'));

@@ -27,8 +27,9 @@ class QuestionsController extends AppController
      */
     public function index()
     {   
-
-        $questions = $this->paginate($this->Questions);
+        $questions = $this->Questions->find('all')->where(['Questions.active' => 1]);
+        
+        $questions = $this->paginate($questions);
 
         $this->set(compact('questions'));
     }
