@@ -4,56 +4,62 @@
  * @var \App\Model\Entity\GaleriesVideo[]|\Cake\Collection\CollectionInterface $galeriesVideos
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Galeries Video'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Galeries'), ['controller' => 'Galeries', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Galery'), ['controller' => 'Galeries', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="galeriesVideos index large-9 medium-8 columns content">
-    <h3><?= __('Galeries Videos') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<!-- Conteúdo da página -->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Galerias de vídeos</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-secondary" href="<?=$this->Url->build('/galeries-videos/add')?>"><i class="fas fa-plus-circle"></i> Adicionar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Col table -->
+    <div class="col-12 mx-auto mb-5 mt-5">
+     <div class="table-responsive">
+      <table class="table table-striped">
         <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('creted_at') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('updated_at') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('galery_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('link') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('caption') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('active') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
+          <tr>
+            <th>Adicionado em</th>
+            <th>Atualização</th>
+            <th>Nome</th>
+            <th>Ações</th>
+          </tr>
         </thead>
         <tbody>
-            <?php foreach ($galeriesVideos as $galeriesVideo): ?>
+            <?php foreach ($galeries as $galery): ?>
             <tr>
-                <td><?= $this->Number->format($galeriesVideo->id) ?></td>
-                <td><?= h($galeriesVideo->creted_at) ?></td>
-                <td><?= h($galeriesVideo->updated_at) ?></td>
-                <td><?= $galeriesVideo->has('galery') ? $this->Html->link($galeriesVideo->galery->name, ['controller' => 'Galeries', 'action' => 'view', $galeriesVideo->galery->id]) : '' ?></td>
-                <td><?= h($galeriesVideo->link) ?></td>
-                <td><?= h($galeriesVideo->caption) ?></td>
-                <td><?= h($galeriesVideo->active) ?></td>
+                <td><?= h($galery->creted_at->format('d/m/Y H:i:s')) ?></td>
+                <td><?= h(!empty($galery->updated_at) ? $galery->updated_at->format('d/m/Y H:i:s') : 'Sem atualização recente') ?></td>
+                <td><?= h($galery->name) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $galeriesVideo->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $galeriesVideo->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $galeriesVideo->id], ['confirm' => __('Are you sure you want to delete # {0}?', $galeriesVideo->id)]) ?>
+                    <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-eye']), ['controller'=>'galeries','action' => 'view', $galery->id], ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Ver', 'escape' => false]) ?>
+
+                    <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-edit']), ['controller'=>'galeries','action' => 'edit', $galery->id], ['class' => 'btn btn-primary btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Editar', 'escape' => false]) ?>
+
+                    <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['controller'=>'galeries','action' => 'delete', $galery->id],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Excluir', 'escape' => false, 'confirm' => __('Deletar galeria "{0}"?', $galery->name)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
-    </table>
-    <div class="paginator">
+      </table>
+      <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Primeira')) ?>
+            <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Próxima') . ' >') ?>
+            <?= $this->Paginator->last(__('Última') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+    </div>
+    <!-- /Col table -->
+  </div>
+  <!-- /row -->
 </div>
+
+</main>
+<!-- FIM Conteúdo da página -->

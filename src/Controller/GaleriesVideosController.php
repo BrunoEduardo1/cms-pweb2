@@ -36,7 +36,7 @@ class GaleriesVideosController extends AppController
         $this->loadModel('Galeries');
         $galeries = $this->Galeries->find('all')
         ->where(['Galeries.active'=>1, 'Galeries.type'=>'VIDEOS'])
-        ->select(['id','creted_at','name']);
+        ->select(['id','creted_at','updated_at','name']);
         $this->set(compact('galeries'));
         $this->set(compact('galeriesVideos'));
     }
