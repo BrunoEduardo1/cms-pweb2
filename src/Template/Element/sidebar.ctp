@@ -20,13 +20,13 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?= $this->Url->build('/galeries_videos')?>">
+      <a class="nav-link" href="<?= $this->Url->build('/galeries-videos')?>">
         <i class="fa fa-video"></i>
         Galeria de vídeos x
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?= $this->Url->build('/galeries_photos')?>">
+      <a class="nav-link" href="<?= $this->Url->build('/galeries-photos')?>">
         <i class="fa fa-image"></i>
         Galeria de fotos x
       </a>

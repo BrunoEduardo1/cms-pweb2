@@ -58,6 +58,9 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
 
+    //$routes->connect('/videos', ['controller' => 'GaleriesVideos', 'action' => 'index']);
+
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
