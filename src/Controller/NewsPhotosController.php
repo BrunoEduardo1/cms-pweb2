@@ -104,7 +104,7 @@ class NewsPhotosController extends AppController
         if ($this->NewsPhotos->delete($newsPhoto)) {
             $this->Flash->success(__('Foto deletada com sucesso.'));
         } else {
-            $this->Flash->error(__('The news photo could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Ocorreu um erro em deletadar a foto. Tente novamente.'));
         }
 
         return $this->redirect(['controller' => 'News', 'action' => 'edit',$news_id]);

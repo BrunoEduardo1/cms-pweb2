@@ -10,7 +10,7 @@
     <li class="nav-item">
       <a class="nav-link" href="<?= $this->Url->build('/users')?>">
         <i class="fa fa-users"></i>
-        Usuários x
+        Usuários
       </a>
     </li>
     <li class="nav-item">
@@ -28,7 +28,7 @@
     <li class="nav-item">
       <a class="nav-link" href="<?= $this->Url->build('/galeries_photos')?>">
         <i class="fa fa-image"></i>
-        Galeria de fotos
+        Galeria de fotos x
       </a>
     </li>
     <li class="nav-item">
