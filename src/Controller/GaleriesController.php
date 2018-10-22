@@ -26,6 +26,7 @@ class GaleriesController extends AppController
      */
     public function index()
     {
+        return $this->redirect(['controller'=> 'GaleriesVideos','action' => 'index']);
         $galeries = $this->paginate($this->Galeries);
 
         $this->set(compact('galeries'));
@@ -54,6 +55,7 @@ class GaleriesController extends AppController
      */
     public function add()
     {
+        return $this->redirect(['controller'=> 'GaleriesVideos','action' => 'index']);
         $galery = $this->Galeries->newEntity();
         if ($this->request->is('post')) {
             $galery = $this->Galeries->patchEntity($galery, $this->request->getData());
@@ -82,9 +84,9 @@ class GaleriesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $galery = $this->Galeries->patchEntity($galery, $this->request->getData());
             if ($this->Galeries->save($galery)) {
-                $this->Flash->success(__('The galery has been saved.'));
+                $this->Flash->success(__('Informações da galeria atualizadas.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view',$id]);
             }
             $this->Flash->error(__('The galery could not be saved. Please, try again.'));
         }
@@ -108,7 +110,6 @@ class GaleriesController extends AppController
         } else {
             $this->Flash->error(__('The galery could not be deleted. Please, try again.'));
         }
-
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller'=> 'GaleriesVideos','action' => 'index']);
     }
 }
