@@ -37,9 +37,10 @@
     <div class="col">
         <?php if (!empty($galery->galeries_videos)): ?>
             <div class="row">
+                <div class="card-group">
             <?php foreach ($galery->galeries_videos as $galeriesVideos): ?>
-                <div class="col-12 col-md-3">   
-                <div class="card" style="width: 18rem;">
+                <!-- <div class="col-12 col-md-6 col-lg-3">    -->
+                <div class="card">
                   <div class="embed-responsive embed-responsive-16by9">
                     <?=$galeriesVideos->link?>
                   </div>
@@ -50,9 +51,10 @@
                     <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['controller' => 'GaleriesVideos','action' => 'delete', $galeriesVideos->id],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','galeriesVideos' => 'Excluir', 'escape' => false, 'confirm' => __('deseja deletar o vídeo  "{0}"?', $galeriesVideos->caption)]) ?>
                     </div>
                 </div>
-            </div>
-
+            <!-- </div> -->
         <?php endforeach; ?>
+            </div>
+            <!-- card group -->
         </div>
         <?php endif; ?>
     </div>
