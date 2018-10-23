@@ -133,13 +133,53 @@ class GaleriesPhotosController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $galeriesPhoto = $this->GaleriesPhotos->patchEntity($galeriesPhoto, $this->request->getData());
-            if ($this->GaleriesPhotos->save($galeriesPhoto)) {
-                $this->Flash->success(__('The galeries photo has been saved.'));
+             $data = $this->request->getData();
+            
+            if (empty($data['galery_id']) && !empty($data['new_galery'])) :
+                //Criar nova galeria
+                $this->loadModel('Galeries');
+                $new_galery       = $this->Galeries->newEntity(); 
+                $new_galery->name = $data['new_galery'];
+                $new_galery->type = 'PHOTOS';
+                
+                $this->Galeries->save($new_galery);
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The galeries photo could not be saved. Please, try again.'));
+                $galeriesPhoto->caption = $data['caption'];
+                $galeriesPhoto->galery_id = $new_galery->id;
+
+                if(!empty($data['photo']['name'])) :
+                    // $path = '/galerias/'.$new_galery->name;
+                    $path = '/galerias/fotos';
+                    $this->Upload->setPath($path);
+                    $galeriesPhoto->photo = $this->Upload->copyUploadedFile($data['photo'], '');                     
+                endif;
+
+                if ($this->GaleriesPhotos->save($galeriesPhoto)) {
+                    $this->Flash->success(__('Foto atualizada e adicionada à nova galeria.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Não possível salvar a foto na nova galeria. Tente novamente.'));
+            elseif(!empty($data['galery_id'])) :
+               
+                $galeriesPhoto->caption = $data['caption'];
+                $galeriesPhoto->galery_id = $data['galery_id'];
+
+                if(!empty($data['photo']['name'])) :
+                    // $path = '/galerias/'.$new_galery->name;
+                    $path = '/galerias/fotos';
+                    $this->Upload->setPath($path);
+                    $galeriesPhoto->photo = $this->Upload->copyUploadedFile($data['photo'], '');                     
+                endif;
+
+                if ($this->GaleriesPhotos->save($galeriesPhoto)) {
+                    $this->Flash->success(__('Foto atualizada.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Erro em salvar a foto na geleria existente.'));
+            endif;
+            //-------
         }
         $galeries = $this->GaleriesPhotos->Galeries->find('all')->select(['id','name'])->where(['Galeries.active'=>1, 'Galeries.type'=>'PHOTOS']);
         $this->set(compact('galeriesPhoto', 'galeries'));
@@ -157,7 +197,7 @@ class GaleriesPhotosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $galeriesPhoto = $this->GaleriesPhotos->get($id);
         if ($this->GaleriesPhotos->delete($galeriesPhoto)) {
-            $this->Flash->success(__('The galeries photo has been deleted.'));
+            $this->Flash->success(__('Foto deletada'));
         } else {
             $this->Flash->error(__('The galeries photo could not be deleted. Please, try again.'));
         }
