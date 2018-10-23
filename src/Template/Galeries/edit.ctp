@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Galery $galery
  */
+$galeryType = ($galery->type == 'VIDEOS') ? 0 : 1;
 ?>
 
 <!-- Conteúdo da página -->
@@ -11,7 +12,7 @@
     <h1 class="h2">Editar galeria</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
-         <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['action' => 'delete', $galery->id],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','galeriesVideos' => 'Excluir', 'escape' => false, 'confirm' => __('Deseja deletar a galeria "{0}"?', $galery->name)]) ?>
+         <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['action' => 'delete', $galery->id, $galeryType],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','galeriesVideos' => 'Excluir', 'escape' => false, 'confirm' => __('Deseja deletar a galeria "{0}"?', $galery->name)]) ?>
     </div>
 </div>
 </div>

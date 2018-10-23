@@ -10,7 +10,7 @@
     <h1 class="h2">Galerias de vídeos</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
-        <a class="btn btn-sm btn-outline-secondary" href="<?=$this->Url->build('/galeries-videos/add')?>"><i class="fas fa-plus-circle"></i> Adicionar</a>
+        <a class="btn btn-sm btn-outline-secondary" href="<?=$this->Url->build('/galeries-videos/add')?>">Novo Vídeo</a>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
 
                     <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-edit']), ['controller'=>'galeries','action' => 'edit', $galery->id], ['class' => 'btn btn-primary btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Editar', 'escape' => false]) ?>
 
-                    <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['controller'=>'galeries','action' => 'delete', $galery->id],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Excluir', 'escape' => false, 'confirm' => __('Deletar galeria "{0}"?', $galery->name)]) ?>
+                    <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['controller'=>'galeries','action' => 'delete', $galery->id,0],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Excluir', 'escape' => false, 'confirm' => __('Deletar galeria "{0}"?', $galery->name)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

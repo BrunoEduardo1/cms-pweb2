@@ -62,37 +62,25 @@
 <!-- /row -->
 <div class="row">
     <div class="col">
-       
         <?php if (!empty($galery->galeries_photos)): ?>
-        <h4><?= __('Related Galeries Photos') ?></h4>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Creted At') ?></th>
-                <th scope="col"><?= __('Updated At') ?></th>
-                <th scope="col"><?= __('Galery Id') ?></th>
-                <th scope="col"><?= __('Photo') ?></th>
-                <th scope="col"><?= __('Caption') ?></th>
-                <th scope="col"><?= __('Active') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
+            <div class="row">
+                <!-- <div class="card-group"> -->
             <?php foreach ($galery->galeries_photos as $galeriesPhotos): ?>
-            <tr>
-                <td><?= h($galeriesPhotos->id) ?></td>
-                <td><?= h($galeriesPhotos->creted_at) ?></td>
-                <td><?= h($galeriesPhotos->updated_at) ?></td>
-                <td><?= h($galeriesPhotos->galery_id) ?></td>
-                <td><?= h($galeriesPhotos->photo) ?></td>
-                <td><?= h($galeriesPhotos->caption) ?></td>
-                <td><?= h($galeriesPhotos->active) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'GaleriesPhotos', 'action' => 'view', $galeriesPhotos->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'GaleriesPhotos', 'action' => 'edit', $galeriesPhotos->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'GaleriesPhotos', 'action' => 'delete', $galeriesPhotos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $galeriesPhotos->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
+                <div class="col-12 col-md-6 col-lg-3">   
+                <div class="card">
+                  <img class="card-img-top" src="<?= $this->Url->build('/public/galerias/fotos/'.$galeriesPhotos->photo) ?>" alt="<?= $galeriesPhotos->caption?>">
+                  <div class="card-body">
+                    <p class="card-text"><?= h($galeriesPhotos->caption) ?><br>
+                        <?= h($galeriesPhotos->creted_at->format('d/m/Y H:i')) ?></p>
+                    <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-edit']), ['controller' => 'GaleriesPhotos','action' => 'edit', $galeriesPhotos->id], ['class' => 'btn btn-primary btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Editar', 'escape' => false]) ?>
+                    <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fas fa-trash']), ['controller' => 'GaleriesPhotos','action' => 'delete', $galeriesPhotos->id],['class' => 'btn btn-danger btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','GaleriesPhotos' => 'Excluir', 'escape' => false, 'confirm' => __('Deseja deletar a foto  "{0}"?', $galeriesPhotos->caption)]) ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+            <!-- </div> -->
+            <!-- card group -->
+        </div>
         <?php endif; ?>
     </div>
 </div>

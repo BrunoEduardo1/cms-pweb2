@@ -11,7 +11,13 @@ use App\Controller\AppController;
  * @method \App\Model\Entity\GaleriesPhoto[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class GaleriesPhotosController extends AppController
-{
+{   
+    public function initialize()
+    {
+        parent::initialize();
+        $this->viewBuilder()->setLayout('admin');
+        $this->loadComponent('Upload');
+    }
 
     /**
      * Index method
@@ -25,7 +31,11 @@ class GaleriesPhotosController extends AppController
         ];
         $galeriesPhotos = $this->paginate($this->GaleriesPhotos);
 
-        $this->set(compact('galeriesPhotos'));
+        $this->loadModel('Galeries');
+        $galeries = $this->Galeries->find('all')
+        ->where(['Galeries.active'=>1, 'Galeries.type'=>'PHOTOS'])
+        ->select(['id','creted_at','updated_at','name']);
+        $this->set(compact('galeriesPhotos', 'galeries'));
     }
 
     /**
@@ -36,7 +46,8 @@ class GaleriesPhotosController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
-    {
+    {   
+        return $this->redirect(['action' => 'index']);
         $galeriesPhoto = $this->GaleriesPhotos->get($id, [
             'contain' => ['Galeries']
         ]);
@@ -53,15 +64,59 @@ class GaleriesPhotosController extends AppController
     {
         $galeriesPhoto = $this->GaleriesPhotos->newEntity();
         if ($this->request->is('post')) {
-            $galeriesPhoto = $this->GaleriesPhotos->patchEntity($galeriesPhoto, $this->request->getData());
-            if ($this->GaleriesPhotos->save($galeriesPhoto)) {
-                $this->Flash->success(__('The galeries photo has been saved.'));
+            $data = $this->request->getData();
+            
+            if (empty($data['galery_id']) && !empty($data['new_galery'])) :
+                //Criar nova galeria
+                $this->loadModel('Galeries');
+                $new_galery       = $this->Galeries->newEntity(); 
+                $new_galery->name = $data['new_galery'];
+                $new_galery->type = 'PHOTOS';
+                
+                $this->Galeries->save($new_galery);
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The galeries photo could not be saved. Please, try again.'));
+                $galeriesPhoto    = $this->GaleriesPhotos->newEntity();
+                $galeriesPhoto->caption = $data['caption'];
+                $galeriesPhoto->galery_id = $new_galery->id;
+
+                if(!empty($data['photo']['name'])) :
+                    // $path = '/galerias/'.$new_galery->name;
+                    $path = '/galerias/fotos';
+                    $this->Upload->setPath($path);
+                    $galeriesPhoto->photo = $this->Upload->copyUploadedFile($data['photo'], '');                     
+                endif;
+
+                if ($this->GaleriesPhotos->save($galeriesPhoto)) {
+                    $this->Flash->success(__('Foto salva e adicionada à nova galeria.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Não possível salvar a foto na nova galeria. Tente novamente.'));
+            elseif(!empty($data['galery_id'])) :
+               
+                $galeriesPhoto    = $this->GaleriesPhotos->newEntity();
+                $galeriesPhoto->caption = $data['caption'];
+                $galeriesPhoto->galery_id = $data['galery_id'];
+
+                if(!empty($data['photo']['name'])) :
+                    // $path = '/galerias/'.$new_galery->name;
+                    $path = '/galerias/fotos';
+                    $this->Upload->setPath($path);
+                    $galeriesPhoto->photo = $this->Upload->copyUploadedFile($data['photo'], '');                     
+                endif;
+
+                if ($this->GaleriesPhotos->save($galeriesPhoto)) {
+                    $this->Flash->success(__('Nova foto salva na galeria.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Erro em salvar a foto na geleria existente.'));
+            endif;
+            // echo var_dump($new_galery);
+            // die();
+            //-------
         }
-        $galeries = $this->GaleriesPhotos->Galeries->find('list', ['limit' => 200]);
+         $galeries = $this->GaleriesPhotos->Galeries->find('all')->select(['id','name'])->where(['Galeries.active'=>1, 'Galeries.type'=>'PHOTOS']);
         $this->set(compact('galeriesPhoto', 'galeries'));
     }
 
@@ -86,7 +141,7 @@ class GaleriesPhotosController extends AppController
             }
             $this->Flash->error(__('The galeries photo could not be saved. Please, try again.'));
         }
-        $galeries = $this->GaleriesPhotos->Galeries->find('list', ['limit' => 200]);
+        $galeries = $this->GaleriesPhotos->Galeries->find('all')->select(['id','name'])->where(['Galeries.active'=>1, 'Galeries.type'=>'PHOTOS']);
         $this->set(compact('galeriesPhoto', 'galeries'));
     }
 

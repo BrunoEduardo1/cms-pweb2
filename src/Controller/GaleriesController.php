@@ -86,7 +86,7 @@ class GaleriesController extends AppController
 
                 return $this->redirect(['action' => 'view',$id]);
             }
-            $this->Flash->error(__('The galery could not be saved. Please, try again.'));
+            $this->Flash->error(__('Erro em salvar as Informações da galeria.'));
         }
         $this->set(compact('galery'));
     }
@@ -98,7 +98,7 @@ class GaleriesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id = null, $red)
     {
         $this->request->allowMethod(['post', 'delete']);
         $galery = $this->Galeries->get($id);
@@ -108,6 +108,8 @@ class GaleriesController extends AppController
         } else {
             $this->Flash->error(__('A galeria não pode ser deletada.'));
         }
-        return $this->redirect(['controller'=> 'GaleriesVideos','action' => 'index']);
+        $redirecionar = ($red) ? 'GaleriesPhotos': 'GaleriesVideos';
+
+        return $this->redirect(['controller'=> $redirecionar,'action' => 'index']);
     }
 }
