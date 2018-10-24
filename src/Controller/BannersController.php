@@ -12,7 +12,11 @@ use App\Controller\AppController;
  */
 class BannersController extends AppController
 {
-
+    public function initialize()
+    {
+        parent::initialize();
+        $this->viewBuilder()->setLayout('admin');
+    }
     /**
      * Index method
      *
@@ -52,11 +56,11 @@ class BannersController extends AppController
         if ($this->request->is('post')) {
             $banner = $this->Banners->patchEntity($banner, $this->request->getData());
             if ($this->Banners->save($banner)) {
-                $this->Flash->success(__('The banner has been saved.'));
+                $this->Flash->success(__('Novo banner salvo'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The banner could not be saved. Please, try again.'));
+            $this->Flash->error(__('O banner não pode ser salvo. Tente novamente.'));
         }
         $this->set(compact('banner'));
     }
@@ -76,11 +80,11 @@ class BannersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $banner = $this->Banners->patchEntity($banner, $this->request->getData());
             if ($this->Banners->save($banner)) {
-                $this->Flash->success(__('The banner has been saved.'));
+                $this->Flash->success(__('Banner atualizado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The banner could not be saved. Please, try again.'));
+            $this->Flash->error(__('O banner não pode ser salvo. Tente novamente.'));
         }
         $this->set(compact('banner'));
     }
@@ -96,10 +100,11 @@ class BannersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $banner = $this->Banners->get($id);
-        if ($this->Banners->delete($banner)) {
-            $this->Flash->success(__('The banner has been deleted.'));
+        $banner->active = 0;
+        if ($this->Banners->save($banner)) {
+            $this->Flash->success(__('O banner não está visível ao público.'));
         } else {
-            $this->Flash->error(__('The banner could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Não foi possível deletar o banner'));
         }
 
         return $this->redirect(['action' => 'index']);
