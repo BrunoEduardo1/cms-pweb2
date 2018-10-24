@@ -39,6 +39,8 @@ if ($(this).hasClass('slider')) {
         });
 //-     /slider
 }
+
+$('.carousel').carousel();
  
 
 });

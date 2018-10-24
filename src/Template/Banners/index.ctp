@@ -18,7 +18,7 @@
   <div class="row">
     <!-- Col table -->
     <div class="col-12 mx-auto mb-5 mt-5">
-     <div class="table-responsive">
+     <!-- <div class="table-responsive"> -->
       <table class="table table-striped">
         <thead>
           <tr>
@@ -36,7 +36,7 @@
                 <td><?= h($banner->creted_at->format('d/m/Y H:i:s')) ?></td>
                 <td><?= h(!empty($banner->updated_at) ? $banner->updated_at->format('d/m/Y H:i:s') : 'Sem atualização recente') ?></td>
                 <td><?= h($banner->title) ?></td>
-                <td><?= h($banner->photo) ?></td>
+                <td><img src="<?=$this->Url->build('/public/banners/'.$banner->photo)?>" class="img-thumbnail" alt="<?= h($banner->title) ?>"></td>
                 <td><?= h($banner->active) ? 'Sim' : 'Não'; ?></td>
                 <td class="actions">
                     <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fas fa-eye']), ['action' => 'view', $banner->id], ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom','title' => 'Ver', 'escape' => false]) ?>
@@ -59,7 +59,7 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
-    </div>
+    <!-- </div> -->
     <!-- /Col table -->
   </div>
   <!-- /row -->

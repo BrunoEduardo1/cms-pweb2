@@ -4,49 +4,56 @@
  * @var \App\Model\Entity\Banner $banner
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Banner'), ['action' => 'edit', $banner->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Banner'), ['action' => 'delete', $banner->id], ['confirm' => __('Are you sure you want to delete # {0}?', $banner->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Banners'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Banner'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="banners view large-9 medium-8 columns content">
-    <h3><?= h($banner->title) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Title') ?></th>
-            <td><?= h($banner->title) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Subtitle') ?></th>
-            <td><?= h($banner->subtitle) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Link') ?></th>
-            <td><?= h($banner->link) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Photo') ?></th>
-            <td><?= h($banner->photo) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($banner->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Creted At') ?></th>
-            <td><?= h($banner->creted_at) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Updated At') ?></th>
-            <td><?= h($banner->updated_at) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Active') ?></th>
-            <td><?= $banner->active ? __('Yes') : __('No'); ?></td>
-        </tr>
-    </table>
+<!-- Conteúdo da página -->
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Banner</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        <a class="btn btn-sm btn-outline-secondary" href="<?=$this->Url->build('/banners/edit/'.$banner->id)?>">Editar Banner</a>  
+      </div>
+  </div>
 </div>
+
+<div class="row">
+    <div class="col-10 mx-auto">
+        <div id="banners" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100 img-responsive" src="<?=$this->Url->build('/public/banners/'.$banner->photo)?>" alt="<?= h($banner->title) ?>">
+              <div class="carousel-caption d-none d-md-block">
+                <h5><?= h($banner->title) ?></h5>
+                <p><?= h($banner->subtitle) ?></p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100 img-responsive" src="<?=$this->Url->build('/public/banners/'.$banner->photo)?>" alt="<?= h($banner->title) ?>">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Título: <?= h($banner->title) ?></h5>
+                <p>Subtitulo: <?= h($banner->subtitle) ?></p>
+              </div>
+            </div>
+
+          </div>
+              <a class="carousel-control-prev" href="#banners" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#banners" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Próximo</span>
+            </a>
+        </div>
+
+    </div> 
+</div>
+<!-- /row -->
+<div class="row mb-3 mt-3">
+    <div class="col-12 text-center">
+        <a href="javascript:history.back(-1);" class="btn btn-primary">Voltar</a>
+    </div> 
+</div> 
+
+
+</main>
+<!-- FIM Conteúdo da página -->
