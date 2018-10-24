@@ -16,7 +16,7 @@
 </div>
 <div class="row">
     <div class="col-10 mx-auto">
-        <?= $this->Form->create($galeriesPhoto) ?>
+        <?= $this->Form->create($galeriesPhoto, ['type' => 'file']) ?>
            <div class="form-group">
                 <input type="hidden" name="photo" value="<?= $galeriesPhoto->photo?>">
                 <input type="file" class="dropify" name="photo" data-max-file-size="2M"  data-min-width="640" data-height="300" data-allowed-file-extensions="jpg jpeg png psd" accept="image/*" data-default-file="<?=$this->Url->build('/public/galerias/fotos/'.$galeriesPhoto->photo)?>">
