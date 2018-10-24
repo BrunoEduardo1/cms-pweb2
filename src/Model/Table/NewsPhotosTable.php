@@ -54,11 +54,11 @@ class NewsPhotosTable extends Table
         $validator
             ->nonNegativeInteger('id')
             ->allowEmpty('id', 'create');
-
+/*
         $validator
             ->dateTime('creted_at')
             ->requirePresence('creted_at', 'create')
-            ->notEmpty('creted_at');
+            ->notEmpty('creted_at');*/
 
         $validator
             ->dateTime('updated_at')
@@ -73,11 +73,11 @@ class NewsPhotosTable extends Table
             ->scalar('description')
             ->maxLength('description', 255)
             ->allowEmpty('description');
-
+/*
         $validator
             ->boolean('active')
             ->requirePresence('active', 'create')
-            ->notEmpty('active');
+            ->notEmpty('active');*/
 
         return $validator;
     }

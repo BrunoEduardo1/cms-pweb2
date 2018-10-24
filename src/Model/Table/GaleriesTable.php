@@ -57,11 +57,11 @@ class GaleriesTable extends Table
         $validator
             ->nonNegativeInteger('id')
             ->allowEmpty('id', 'create');
-
+/*
         $validator
             ->dateTime('creted_at')
             ->requirePresence('creted_at', 'create')
-            ->notEmpty('creted_at');
+            ->notEmpty('creted_at');*/
 
         $validator
             ->dateTime('updated_at')
@@ -80,11 +80,11 @@ class GaleriesTable extends Table
             ->scalar('type')
             ->requirePresence('type', 'create')
             ->notEmpty('type');
-
+/*
         $validator
             ->boolean('active')
             ->requirePresence('active', 'create')
-            ->notEmpty('active');
+            ->notEmpty('active');*/
 
         return $validator;
     }

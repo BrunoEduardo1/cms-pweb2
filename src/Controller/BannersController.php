@@ -16,6 +16,7 @@ class BannersController extends AppController
     {
         parent::initialize();
         $this->viewBuilder()->setLayout('admin');
+        $this->loadComponent('Upload');
     }
     /**
      * Index method
@@ -54,7 +55,19 @@ class BannersController extends AppController
     {
         $banner = $this->Banners->newEntity();
         if ($this->request->is('post')) {
-            $banner = $this->Banners->patchEntity($banner, $this->request->getData());
+            //dados do formulário
+            $data  = $this->request->getData();
+            $banner->title = $data['title'];
+            $banner->subtitle = $data['subtitle'];
+            $banner->link = !empty($data['link']) ? $data['link'] : null ;
+
+            //echo count($data['extra']);die();
+            if(!empty($data['photo']['name'])){
+                $path = '/banners/'; 
+                $this->Upload->setPath($path);
+                $banner->photo = $this->Upload->copyUploadedFile($data['photo'], '');                     
+            }
+
             if ($this->Banners->save($banner)) {
                 $this->Flash->success(__('Novo banner salvo'));
 
@@ -78,7 +91,19 @@ class BannersController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $banner = $this->Banners->patchEntity($banner, $this->request->getData());
+            
+            $data  = $this->request->getData();
+            $banner->title = $data['title'];
+            $banner->subtitle = $data['subtitle'];
+            $banner->link = !empty($data['link']) ? $data['link'] : null ;
+
+            //echo count($data['extra']);die();
+            if(!empty($data['photo']['name'])){
+                $path = '/banners/'; 
+                $this->Upload->setPath($path);
+                $banner->photo = $this->Upload->copyUploadedFile($data['photo'], '');                     
+            }
+            
             if ($this->Banners->save($banner)) {
                 $this->Flash->success(__('Banner atualizado.'));
 
