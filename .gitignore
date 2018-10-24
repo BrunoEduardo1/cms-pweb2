@@ -8,6 +8,8 @@
 /webroot/public/page_pic/*
 /webroot/public/news_pic/*
 /webroot/public/galerias/*
+/webroot/public/banners/*
+
 
 # OS generated files #
 ######################
