@@ -58,3 +58,7 @@
   </ul>
 </div>
 </nav>
+<?php
+//collapse sidebar 
+//navbar-expand-lg
+//collapse navbar-collapse" id="naveee" ?>
