@@ -67,7 +67,7 @@
             <?= $this->Paginator->next(__('Próxima') . ' >') ?>
             <?= $this->Paginator->last(__('Última') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+         <p><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}, exibindo {{current}} de {{count}} registro(s).')]) ?></p>
     </div>
     </div>
     <!-- /Col table -->

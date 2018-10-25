@@ -23,7 +23,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fas fa-external-link-alt"></i></div>
                     </div>
-                     <input type="text" name="link" id="link" class="form-control" placeholder="Link para o vídeo" required value="<?=h($galeriesVideo->link) ?>">
+                     <input type="text" name="link" id="link" class="form-control" placeholder="Embed para o vídeo" required value="<?=h($galeriesVideo->link) ?>">
                   </div>
             </div>
             <div class="form-group">
