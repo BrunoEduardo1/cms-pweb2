@@ -19,10 +19,7 @@ $titulocms = 'Fucking CMS';
     <link href="<?=$this->Url->build('/font/dropify/dropify.ttf')?>" rel="stylesheet"> 
     <link href="<?=$this->Url->build('/font/dropify/dropify.woff')?>" rel="stylesheet"> 
     <?= $this->Html->css('dropify.css') ?>
-
-   
-   
-     <!-- Icones fontawesome -->
+    <!-- Icones fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
           crossorigin="anonymous">
@@ -66,11 +63,8 @@ $titulocms = 'Fucking CMS';
 <?= $this->Html->script('popper.min.js') ?>
 <?= $this->Html->script('dropify.js') ?>
 <?= $this->Html->script('basics.js') ?>
-  <script>
+  <script type="text/javascript">
     feather.replace()
-    //$('.dropify').dropify();
   </script>
 </body>
 </html>
-
-
