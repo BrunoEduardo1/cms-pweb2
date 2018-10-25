@@ -55,7 +55,7 @@ $titulocms = 'Fucking CMS';
         <!-- side bar -->
         <?= $this->element('sidebar')?>
         <!-- [fim] side bar -->
-         <?= $this->Flash->render() ?>
+        <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     </div>
 <footer>

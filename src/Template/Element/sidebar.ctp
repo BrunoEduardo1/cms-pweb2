@@ -22,13 +22,13 @@
     <li class="nav-item">
       <a class="nav-link" href="<?= $this->Url->build('/galeries-videos')?>">
         <i class="fa fa-video"></i>
-        Galeria de vídeos x
+        Galeria de vídeos
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="<?= $this->Url->build('/galeries-photos')?>">
         <i class="fa fa-image"></i>
-        Galeria de fotos x
+        Galeria de fotos
       </a>
     </li>
     <li class="nav-item">
@@ -50,9 +50,9 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" href="<?= $this->Url->build('/Banners')?>">
+      <a class="nav-link" href="<?= $this->Url->build('/Banners')?>">
         <i class="fa fa-images"></i>
-        Banners <span class="sr-only">(current)</span>
+        Banners <!-- <span class="sr-only">(current)</span> -->
       </a>
     </li>
   </ul>
