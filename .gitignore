@@ -4,7 +4,7 @@
 /config/.env
 /logs/*
 /tmp/*
-/vendor/*
+#/vendor/*
 /webroot/public/page_pic/*
 /webroot/public/news_pic/*
 /webroot/public/galerias/*
