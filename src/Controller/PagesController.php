@@ -72,6 +72,13 @@ class PagesController extends AppController
                 $this->Upload->setPath($path);
                 $page->photo = $this->Upload->copyUploadedFile($data['photo'], '');                     
             }
+            //base64 method
+            // if(!empty($data['photo']['name'])){
+            //     $path = $data['photo']['tmp_name'];
+            //     $type = pathinfo($path, PATHINFO_EXTENSION);
+            //     $content = file_get_contents($path);
+            //     $page->photo = 'data:image/' . $type . ';base64,' . base64_encode($content); 
+            // }
 
             if ($this->Pages->save($page)) {
                 $this->Flash->success(__('The page has been saved.'));
